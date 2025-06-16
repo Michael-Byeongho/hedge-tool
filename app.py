@@ -4,6 +4,14 @@ import math
 
 st.title("전기동 실물 기반 LME 헷지 계산기")
 
+with open("sample.xlsx", "rb") as f:
+    st.download_button(
+        label="📥 샘플 엑셀 양식 다운로드",
+        data=f,
+        file_name="sample_template.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    )
+
 uploaded_file = st.file_uploader("실물 거래 엑셀 파일을 업로드하세요", type=["xlsx"])
 
 if uploaded_file:
