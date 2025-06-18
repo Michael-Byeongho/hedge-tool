@@ -41,8 +41,8 @@ for name, symbol in tickers.items():
     try:
         data = yf.download(symbol, start=yesterday.strftime('%Y-%m-%d'), end=today.strftime('%Y-%m-%d'))
         if not data.empty:
-            latest_close = data['Close'].iloc[-1]
-            prev_close = data['Close'].iloc[0]
+            latest_close = float(data['Close'].iloc[-1])
+            prev_close = float(data['Close'].iloc[0])
             pct_change = ((latest_close - prev_close) / prev_close) * 100
             macro_data.append({
                 'Indicator': name,
