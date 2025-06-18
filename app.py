@@ -69,7 +69,6 @@ except:
 macro_df = pd.DataFrame(macro_data)
 
 st.subheader("📊 매크로 지표 (카드형)")
-st.subheader("📊 매크로 지표 (카드형)")
 
 link_map = {
     'USD/KRW': 'https://finance.yahoo.com/quote/KRW=X',
