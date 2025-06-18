@@ -1,3 +1,6 @@
-pandas
 streamlit
+pandas
+yfinance
 openpyxl
+requests
+beautifulsoup4
