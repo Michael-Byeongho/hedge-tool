@@ -67,7 +67,30 @@ except:
     macro_data.append({'Indicator': 'LME Copper 3M', 'Value': 'Error', 'Change (%)': 'Error'})
 
 macro_df = pd.DataFrame(macro_data)
-st.dataframe(macro_df)
+
+st.subheader("📊 매크로 지표 (카드형)")
+
+for row in macro_df.itertuples():
+    indicator = row.Indicator
+    value = row.Value
+    change = row._3  # Change (%)
+
+    if isinstance(change, float):
+        icon = "🔺" if change > 0 else "🔻" if change < 0 else "➖"
+        color = "red" if change > 0 else "blue" if change < 0 else "gray"
+        change_str = f"<span style='color:{color};'>{icon} {change:.2f}%</span>"
+    else:
+        change_str = "<span style='color:gray;'>N/A</span>"
+
+    st.markdown(f"""
+    <div style="border:1px solid #ddd;padding:10px 20px 10px 20px;margin-bottom:10px;
+                border-radius:10px;background-color:#f9f9f9;">
+        <h5 style='margin-bottom:5px;'>{indicator}</h5>
+        <div style='font-size:24px;font-weight:bold'>{value}</div>
+        <div style='font-size:16px;'>변화율: {change_str}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
 
 # 3. 📂 파일 업로드 및 실물 포지션 계산
 uploaded_file = st.file_uploader("실물 거래 엑셀 파일을 업로드하세요", type=["xlsx"])
